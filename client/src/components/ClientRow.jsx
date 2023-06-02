@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/client';
 import { DELETE_CLIENT } from '../mutations/clientMutations';
 import { GET_CLIENTS } from '../queries/clientQueries';
 import { GET_PROJECTS } from '../queries/projectQueries';
+import EditClientForm from './EditClientForm';
 
 export default function ClientRow({ client }) {
     const [deleteClient] = useMutation(DELETE_CLIENT, {
@@ -18,6 +19,8 @@ export default function ClientRow({ client }) {
         //    });
         // }
     });
+
+
   return (
     <tr>
         <td>{ client.name }</td>
@@ -28,6 +31,11 @@ export default function ClientRow({ client }) {
                 <FaTrash />
              </button>
         </td>
+        <td>
+        <EditClientForm clientID={client.id}/>{client.id}
+        </td>
     </tr>
+
+    
   )
 }

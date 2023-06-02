@@ -2,6 +2,8 @@ import { useQuery } from '@apollo/client';
 import ClientRow from './ClientRow';
 import Spinner from './Spinner'
 import { GET_CLIENTS } from '../queries/clientQueries'
+import { useState } from 'react';
+// import EditClientForm from './EditClientForm';
 
 
 export default function Clients() {
@@ -12,6 +14,7 @@ export default function Clients() {
 
     return <>{
         !loading && !error && (
+            <>
             <table className='table table-hover mt-3'>
                 <thead>
                     <tr>
@@ -19,16 +22,19 @@ export default function Clients() {
                         <th>Email</th>
                         <th>Phone</th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {
                         data.clients.map(client => (
-                            <ClientRow key={client.id} client={client} />
+                            <ClientRow key={client.id} client={client}/>
                         ))
                     }
                 </tbody>
             </table>
+            </>
         )
+        
     }</>;
 }
